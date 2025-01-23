@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://gngfnboqvdlh"]
+[gd_scene load_steps=10 format=3 uid="uid://gngfnboqvdlh"]
 
 [ext_resource type="Texture2D" uid="uid://cwoslct26ti7c" path="res://art/enemyFlyingAlt_1.png" id="1_6ol51"]
+[ext_resource type="Script" path="res://mob.gd" id="1_hgy5a"]
 [ext_resource type="Texture2D" uid="uid://7c848gogcfv" path="res://art/enemyFlyingAlt_2.png" id="2_wonp8"]
 [ext_resource type="Texture2D" uid="uid://d3qse6yxcqel7" path="res://art/enemySwimming_1.png" id="3_dtce0"]
 [ext_resource type="Texture2D" uid="uid://b1u8larm8c4gx" path="res://art/enemySwimming_2.png" id="4_xik0r"]
@@ -43,20 +44,30 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbove"]
+radius = 34.2648
+height = 68.5296
+
 [node name="Mob" type="RigidBody2D"]
-scale = Vector2(0.75, 0.75)
 collision_layer = 0
 gravity_scale = 0.0
+script = ExtResource("1_hgy5a")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_i1vhn")
-animation = &"fly"
-frame_progress = 0.651186
+animation = &"walk"
+frame_progress = 0.999378
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.07983, 1.53854)
+shape = SubResource("CapsuleShape2D_cbove")
 metadata/_edit_group_ = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 metadata/_edit_group_ = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
