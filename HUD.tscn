@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://h1lxbp1i360j"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_37nim"]
+[ext_resource type="Theme" uid="uid://qtsyh26bopvq" path="res://theme1.tres" id="2_l2hsb"]
+[ext_resource type="Script" path="res://timer.gd" id="3_egpse"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_37nim")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 25.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme = ExtResource("2_l2hsb")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -52.0
+offset_right = 242.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_l2hsb")
+text = "Dodge the Creeps!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -161.0
+offset_right = 100.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_l2hsb")
+text = "Host Game"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+script = ExtResource("3_egpse")
+
+[node name="IPAddress" type="TextEdit" parent="."]
+offset_left = 32.0
+offset_top = 117.0
+offset_right = 454.0
+offset_bottom = 199.0
+theme = ExtResource("2_l2hsb")
+theme_override_font_sizes/font_size = 48
+placeholder_text = "xxx.xxx.xxx.xxx"
+
+[node name="ConnectButton" type="Button" parent="."]
+offset_left = 78.0
+offset_top = 203.0
+offset_right = 402.0
+offset_bottom = 319.0
+theme = ExtResource("2_l2hsb")
+text = "Connect"

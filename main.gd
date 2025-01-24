@@ -5,22 +5,33 @@ var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$HUD.start_game.connect(new_game)
+	$HUD.connect_to_game.connect(_on_hud_connect_to_game)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$HUD.show_game_over()
+	$DeathSound.play()
+	$Music.stop()
 
-func new_game():
+func new_game() -> void:
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
+	get_tree().call_group("mobs", "queue_free")
+	$StartSound.play()
+	$Music.play()
+	
+func _on_hud_connect_to_game(ip_address: String) -> void:
+	print(ip_address)
 
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()
@@ -36,6 +47,7 @@ func _on_mob_timer_timeout() -> void:
 
 func _on_score_timer_timeout() -> void:
 	score += 1
+	$HUD.update_score(score)
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
