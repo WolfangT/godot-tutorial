@@ -5,7 +5,7 @@ var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$HUD.start_game.connect(new_game)
+	$HUD.start_game.connect(_on_hud_start_game)
 	$HUD.connect_to_game.connect(_on_hud_connect_to_game)
 
 
@@ -13,6 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _on_hud_start_game():
+	$Network.create_server()
+	
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
@@ -32,6 +35,7 @@ func new_game() -> void:
 	
 func _on_hud_connect_to_game(ip_address: String) -> void:
 	print(ip_address)
+	$Network.join_server(ip_address)
 
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()
