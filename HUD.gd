@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 # Notifies `Main` node that the button has been pressed
-signal start_game
-signal connect_to_game(ip_address)
+signal start_game(player_name)
+signal connect_to_game(ip_address, player_name)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,24 +28,33 @@ func show_game_over():
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
-	$StartButton.show()
+	show_buttons()
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
+
+func show_buttons():
+	$StartButton.show()
+	$ConnectButton.show()
+	$IPAddress.show()
+	$PlayerName.show()
 
 func hide_buttons():
 	$StartButton.hide()
 	$ConnectButton.hide()
 	$IPAddress.hide()
+	$PlayerName.hide()
 
 func _on_start_button_pressed():
 	hide_buttons()
-	start_game.emit()
+	var player_name = $PlayerName.get_line(0)
+	start_game.emit(player_name)
 
 func _on_connect_button_pressed():
 	hide_buttons()
 	var ip_address = $IPAddress.get_line(0)
-	connect_to_game.emit(ip_address)
+	var player_name = $PlayerName.get_line(0)
+	connect_to_game.emit(ip_address, player_name)
 
 func _on_message_timer_timeout():
 	$Message.hide()

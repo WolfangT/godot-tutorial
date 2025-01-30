@@ -13,7 +13,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_hud_start_game():
+func _on_hud_start_game(player_name: String):
+	print(player_name)
 	$Network.create_server()
 	
 func game_over() -> void:
@@ -33,9 +34,10 @@ func new_game() -> void:
 	$StartSound.play()
 	$Music.play()
 	
-func _on_hud_connect_to_game(ip_address: String) -> void:
+func _on_hud_connect_to_game(ip_address: String, player_name: String) -> void:
 	print(ip_address)
-	$Network.join_server(ip_address)
+	print(player_name)
+	$Network.join_server(ip_address, player_name)
 
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()

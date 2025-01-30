@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://h1lxbp1i360j"]
+[gd_scene load_steps=3 format=3 uid="uid://h1lxbp1i360j"]
 
 [ext_resource type="Script" path="res://HUD.gd" id="1_37nim"]
 [ext_resource type="Theme" uid="uid://qtsyh26bopvq" path="res://theme1.tres" id="2_l2hsb"]
@@ -26,9 +26,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -238.0
-offset_top = -52.0
+offset_top = -166.0
 offset_right = 242.0
-offset_bottom = 188.0
+offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_l2hsb")
@@ -43,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -161.0
-offset_right = 100.0
-offset_bottom = -61.0
+offset_left = -190.0
+offset_top = -94.0
+offset_right = 190.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_l2hsb")
@@ -58,17 +58,25 @@ one_shot = true
 
 [node name="IPAddress" type="TextEdit" parent="."]
 offset_left = 32.0
-offset_top = 117.0
+offset_top = 452.0
 offset_right = 454.0
-offset_bottom = 199.0
+offset_bottom = 534.0
 theme = ExtResource("2_l2hsb")
 theme_override_font_sizes/font_size = 48
 placeholder_text = "xxx.xxx.xxx.xxx"
 
 [node name="ConnectButton" type="Button" parent="."]
-offset_left = 78.0
-offset_top = 203.0
-offset_right = 402.0
-offset_bottom = 319.0
+offset_left = 79.0
+offset_top = 534.0
+offset_right = 403.0
+offset_bottom = 620.0
 theme = ExtResource("2_l2hsb")
 text = "Connect"
+
+[node name="PlayerName" type="TextEdit" parent="."]
+offset_left = 20.0
+offset_top = 102.0
+offset_right = 458.0
+offset_bottom = 199.0
+theme = ExtResource("2_l2hsb")
+placeholder_text = "Player Name"
